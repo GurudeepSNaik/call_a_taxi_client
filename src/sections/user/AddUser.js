@@ -265,7 +265,7 @@ export const AddUser = (props) => {
                     type="submit"
                     variant="contained"
                     sx={{
-                      backgroundColor: "#ec3e97",
+                      backgroundColor: "#fbe03b",
                       "&:hover": {
                         backgroundColor: "#50c2b5",
                       },

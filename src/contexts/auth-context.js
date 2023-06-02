@@ -198,12 +198,46 @@ export const AuthProvider = (props) => {
     setLoading(false)
   };
 
+  const deleteUser = async (id) => {
+    setLoading(true);
+    try {
+      await baseAxios.delete(`/user?id=${id}`);
+      getUsers(1)
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401) {
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        alert(error.message);
+      }
+    }
+    setLoading(false)
+  };
+
   const getProviders = async (page) => {
     setLoading(true)
     try {
       const res = await baseAxios.get(`/providers?page=${page}`);
       setProviders(res?.data?.responseData);
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        alert(error.message);
+      }
+    }
+    setLoading(false)
+  };
+
+  const deleteProvider = async (id) => {
+    setLoading(true);
+    try {
+      await baseAxios.delete(`/provider?id=${id}`);
+      getProviders(1)
+    } catch (error) {
+      console.log(error);
       if (error.response.status === 401) {
         localStorage.clear();
         window.location.reload();
@@ -223,7 +257,12 @@ export const AuthProvider = (props) => {
         signUp,
         signOut,
         getUsers,
+        deleteUser,
+
         getProviders,
+        deleteProvider,
+
+
         users,
         providers,
         loading,

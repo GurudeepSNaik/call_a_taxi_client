@@ -21,7 +21,7 @@ export const CustomersSearch = ({ customersSelection }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { getUsers, deleteUser } = useAuth();
+  const { deleteUser } = useAuth();
   let debounceTimer;
 
   const debounce = (callback, time) => {
@@ -32,9 +32,9 @@ export const CustomersSearch = ({ customersSelection }) => {
   const search = (e) => {
     debounce(() => {
       if (e.target.value === "") {
-        getUsers();
+        // getUsers();
       } else {
-        getUsers(e.target.value);
+        // getUsers(e.target.value);
       }
     }, 500);
   };

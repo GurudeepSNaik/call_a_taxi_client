@@ -21,7 +21,7 @@ export const ProviderSearch = ({ customersSelection }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { getUsers, deleteUser } = useAuth();
+  const { getUsers, deleteProvider } = useAuth();
   let debounceTimer;
 
   const debounce = (callback, time) => {
@@ -40,7 +40,7 @@ export const ProviderSearch = ({ customersSelection }) => {
   };
   const handleDelete = () => {
     customersSelection.selected.map(async (each) => {
-      // await deleteUser(each);
+      await deleteProvider(each);
     });
     handleClose()
   };
